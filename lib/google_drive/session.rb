@@ -29,6 +29,8 @@ module GoogleDrive
     include(Util)
     extend(Util)
 
+    attr_reader :credentials
+
     DEFAULT_SCOPE = [
       'https://www.googleapis.com/auth/drive',
       'https://spreadsheets.google.com/feeds/'
@@ -204,6 +206,7 @@ module GoogleDrive
         else
           credentials = credentials_or_access_token
         end
+        @credentials = credentials
         @fetcher = ApiClientFetcher.new(
           credentials, client_options, request_options
         )
